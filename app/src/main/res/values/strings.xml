@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Baking</string>
+    <string name="network_error">Internet Disconnected Please Connect To The Internet</string>
+    <string name="recipe_card">Recipe Card</string>
+    <string name="ingredients">Ingredients</string>
+</resources>

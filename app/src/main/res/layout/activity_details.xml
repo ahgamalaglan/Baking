@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/recipe_details_frag"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".ui.details_activity.DetailsActivity">
+
+    <FrameLayout
+        android:id="@+id/steps_frag"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</FrameLayout>

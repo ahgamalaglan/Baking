@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gemy.ahmed.baking.R;
+import com.gemy.ahmed.baking.models.Recipe;
 import com.gemy.ahmed.baking.models.Step;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class RecipeDetailsFragment extends Fragment implements RecipeDetailsAdap
     private TextView ingredients;
     private RecyclerView recyclerView;
     private List<Step> steps;
+    Recipe recipe;
 
     LinearLayoutManager linearLayoutManager;
     RecipeDetailsAdapter recipeDetailsAdapter;
@@ -60,7 +62,16 @@ public class RecipeDetailsFragment extends Fragment implements RecipeDetailsAdap
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        if (getArguments() != null) {
+            Toast.makeText(getContext(), "arguments", Toast.LENGTH_SHORT).show();
+            if (getArguments().getParcelable("steps") != null) {
+                Toast.makeText(getContext(), "steps", Toast.LENGTH_SHORT).show();
+                recipe = getArguments().getParcelable("steps");
+                assert recipe != null;
+                steps = recipe.getSteps();
+                recipeDetailsAdapter.setSteps(steps);
+            }
+        }
     }
 
     @Override

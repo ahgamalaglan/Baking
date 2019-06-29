@@ -29,7 +29,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         recipeDetailsFragment = new RecipeDetailsFragment();
         Bundle mBundle = new Bundle();
-        mBundle.putParcelableArrayList("steps", (ArrayList<? extends Parcelable>) recipe.getSteps());
+        mBundle.putParcelable("steps",  recipe);
         recipeDetailsFragment.setArguments(mBundle);
         getSupportFragmentManager()
                 .beginTransaction()

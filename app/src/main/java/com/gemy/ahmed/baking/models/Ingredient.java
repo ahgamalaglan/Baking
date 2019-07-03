@@ -18,12 +18,10 @@ public class Ingredient implements Parcelable {
     @Expose
     private String ingredient;
 
+
     protected Ingredient(Parcel in) {
-        if (in.readByte() == 0) {
-            quantity = null;
-        } else {
-            quantity = in.readDouble();
-        }
+
+        quantity = in.readDouble();
         measure = in.readString();
         ingredient = in.readString();
     }
@@ -64,20 +62,16 @@ public class Ingredient implements Parcelable {
         this.ingredient = ingredient;
     }
 
+
     @Override
     public int describeContents() {
         return 0;
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        if (quantity == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeDouble(quantity);
-        }
-        dest.writeString(measure);
-        dest.writeString(ingredient);
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeDouble(quantity);
+        parcel.writeString(measure);
+        parcel.writeString(ingredient);
     }
 }

@@ -19,7 +19,7 @@ public class NetworkUtil {
     public static WebServices getRetrofitClient() {
         if (webServices == null) {
             HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-            httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
+            httpLoggingInterceptor.level(HttpLoggingInterceptor.Level.BASIC);
 
             OkHttpClient okHttpClient = new OkHttpClient.Builder()
                     .addInterceptor(httpLoggingInterceptor)

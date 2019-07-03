@@ -1,5 +1,6 @@
-package com.gemy.ahmed.baking.ui.fragments;
+package com.gemy.ahmed.baking.adapters;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,29 +11,33 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.gemy.ahmed.baking.R;
 import com.gemy.ahmed.baking.models.Step;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class RecipeDetailsAdapter extends RecyclerView.Adapter<RecipeDetailsAdapter.ViewHolder> {
+public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.ViewHolder> {
 
     private final OnListItemClickListener mListener;
-    List<Step> steps = new ArrayList<>();
+    private List<Step> steps = new ArrayList<>();
 
-    public RecipeDetailsAdapter(OnListItemClickListener listener) {
+    public StepsAdapter(OnListItemClickListener listener) {
         mListener = listener;
     }
 
+    @NotNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recipe_card, parent, false);
+                .inflate(R.layout.step_item, parent, false);
         return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mIdView.setText(steps.get(position).getDescription());
+    public void onBindViewHolder(@NotNull final ViewHolder holder, int position) {
+        holder.mIdView.setText("Step :"+(position+1));
 
 
     }
@@ -50,11 +55,11 @@ public class RecipeDetailsAdapter extends RecyclerView.Adapter<RecipeDetailsAdap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public final TextView mIdView;
+        private final TextView mIdView;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
-            mIdView = view.findViewById(R.id.tv_recipe_card_text);
+            mIdView = view.findViewById(R.id.tv_step_text);
         }
 
         @Override

@@ -58,7 +58,6 @@ public class Step implements Parcelable {
     public void setShortDescription(String shortDescription) {
         this.shortDescription = shortDescription;
     }
-
     public String getDescription() {
         return description;
     }
@@ -89,11 +88,11 @@ public class Step implements Parcelable {
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
-        dest.writeString(shortDescription);
-        dest.writeString(description);
-        dest.writeString(videoURL);
-        dest.writeString(thumbnailURL);
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(id);
+        parcel.writeString(shortDescription);
+        parcel.writeString(description);
+        parcel.writeString(videoURL);
+        parcel.writeString(thumbnailURL);
     }
 }

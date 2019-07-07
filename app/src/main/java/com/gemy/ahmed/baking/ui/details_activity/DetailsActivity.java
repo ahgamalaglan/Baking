@@ -12,6 +12,8 @@ import com.gemy.ahmed.baking.models.Recipe;
 import com.gemy.ahmed.baking.models.Step;
 import com.gemy.ahmed.baking.ui.details_activity.fragments.IngredientsFragment;
 import com.gemy.ahmed.baking.ui.details_activity.fragments.RecipeDetailsFragment;
+import com.gemy.ahmed.baking.ui.details_activity.fragments.StepFragment;
+import com.gemy.ahmed.baking.ui.details_activity.fragments.StepsFragment;
 
 import java.util.ArrayList;
 
@@ -19,8 +21,11 @@ public class DetailsActivity extends AppCompatActivity implements RecipeDetailsF
 
     private Recipe recipe;
     private static final String TAG = "DetailsActivity";
+
     RecipeDetailsFragment recipeDetailsFragment;
+
     IngredientsFragment ingredientsFragment;
+    StepsFragment stepsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +60,20 @@ public class DetailsActivity extends AppCompatActivity implements RecipeDetailsF
     }
 
     @Override
-    public void onStepClick(Step step) {
-        Toast.makeText(this, step.getId() + "", Toast.LENGTH_SHORT).show();
-        Log.d(TAG, "onStepClick: ");
+    public void onStepClick(Step step,int stepId) {
+        stepsFragment = new StepsFragment();
+
+        Bundle bundle = new Bundle();
+
+        bundle.putParcelableArrayList("steps", (ArrayList<? extends Parcelable>) recipe.getSteps());
+        bundle.putInt("stepIndex",stepId);
+        stepsFragment.setArguments(bundle);
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.ingredients_frag, stepsFragment)
+                .addToBackStack(null)
+                .commit();
     }
 
     @Override
@@ -74,7 +90,7 @@ public class DetailsActivity extends AppCompatActivity implements RecipeDetailsF
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.ingredients_frag, ingredientsFragment)
-                .addToBackStack("details")
+                .addToBackStack(null)
                 .commit();
 
     }

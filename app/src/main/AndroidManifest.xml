@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".ui.details_activity.DetailsActivity" />
-        <activity android:name=".ui.mainactivity.MainActivity">
+        <activity android:name=".ui.main_activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

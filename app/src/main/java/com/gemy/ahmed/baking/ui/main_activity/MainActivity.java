@@ -1,4 +1,4 @@
-package com.gemy.ahmed.baking.ui.mainactivity;
+package com.gemy.ahmed.baking.ui.main_activity;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
@@ -56,7 +57,8 @@ public class MainActivity extends AppCompatActivity implements RecipesAdapter.On
                     Log.d(TAG, "onCreate: recipes" + recipes.size());
                     progressBar.setVisibility(View.INVISIBLE);
                     recipesAdapter.setRecipes(recipes);
-                }
+                } else
+                    Toast.makeText(this, "no recipes returned ", Toast.LENGTH_LONG).show();
             });
 
 

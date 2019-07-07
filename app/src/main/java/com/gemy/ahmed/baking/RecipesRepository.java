@@ -1,6 +1,5 @@
 package com.gemy.ahmed.baking;
 
-import android.app.Application;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
@@ -28,13 +27,13 @@ public class RecipesRepository {
             @Override
             public void onResponse(Call<List<Recipe>> call, Response<List<Recipe>> response) {
                 recipes.postValue(response.body());
-                Log.d(TAG, "onResponse: "+response.body().toString());
+                Log.d(TAG, "onResponse: " + response.body().toString());
             }
 
             @Override
             public void onFailure(Call<List<Recipe>> call, Throwable t) {
-                recipes = null;
-                Log.d(TAG, "onFailure: "+t.toString());
+                recipes.postValue(null);
+                Log.d(TAG, "onFailure: " + t.toString());
             }
         });
         return recipes;

@@ -38,8 +38,6 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NotNull final ViewHolder holder, int position) {
         holder.mIdView.setText("Step :"+(position+1));
-
-
     }
 
     @Override
@@ -60,6 +58,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.ViewHolder> 
         ViewHolder(View view) {
             super(view);
             mIdView = view.findViewById(R.id.tv_step_text);
+            itemView.setOnClickListener(this);
         }
 
         @Override

@@ -32,7 +32,7 @@ public class RecipeDetailsFragment extends Fragment implements StepsAdapter.OnLi
     private LinearLayoutManager linearLayoutManager;
     private OnStepClickListener onStepClickListener;
     private OnIngredientClickListener onIngredientClickListener;
-
+    private List<Step> steps;
     public RecipeDetailsFragment() {
     }
 
@@ -46,7 +46,7 @@ public class RecipeDetailsFragment extends Fragment implements StepsAdapter.OnLi
 
         if (getArguments() != null) {
             if (getArguments().getParcelableArrayList("steps") != null) {
-                List<Step> steps = getArguments().getParcelableArrayList("steps");
+                  steps = getArguments().getParcelableArrayList("steps");
                 recipeDetailsAdapter.setSteps(steps);
             }
 
@@ -75,7 +75,7 @@ public class RecipeDetailsFragment extends Fragment implements StepsAdapter.OnLi
 
     @Override
     public void onItemClick(Step step) {
-        onStepClickListener.onStepClick(step);
+        onStepClickListener.onStepClick(step,steps.indexOf(step));
     }
 
 
@@ -103,7 +103,7 @@ public class RecipeDetailsFragment extends Fragment implements StepsAdapter.OnLi
     }
 
     public interface OnStepClickListener {
-        void onStepClick(Step step);
+        void onStepClick(Step step,int stepId);
     }
 
     public interface OnIngredientClickListener {

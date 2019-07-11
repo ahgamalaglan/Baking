@@ -12,16 +12,14 @@ import java.util.List;
 public class StepsPagerAdapter extends FragmentPagerAdapter {
 
     private List<Step> steps;
-    private Step step;
-    public StepsPagerAdapter(FragmentManager fm, List<Step> steps,Step step) {
+    public StepsPagerAdapter(FragmentManager fm, List<Step> steps) {
         super(fm);
         this.steps = steps;
-        this.step = step;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return StepFragment.newInstance(position,steps,step);
+        return StepFragment.newInstance(position);
     }
 
     @Override
@@ -29,4 +27,8 @@ public class StepsPagerAdapter extends FragmentPagerAdapter {
         return steps.size();
     }
 
+    @Override
+    public long getItemId(int position) {
+        return super.getItemId(position);
+    }
 }

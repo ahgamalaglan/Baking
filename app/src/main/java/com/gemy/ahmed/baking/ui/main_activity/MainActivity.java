@@ -19,7 +19,7 @@ import com.gemy.ahmed.baking.adapters.RecipesAdapter;
 import com.gemy.ahmed.baking.models.Recipe;
 import com.gemy.ahmed.baking.ui.details_activity.DetailsActivity;
 import com.gemy.ahmed.baking.utils.NetworkUtil;
-import com.gemy.ahmed.baking.viewmodels.RecipesViewmodel;
+import com.gemy.ahmed.baking.viewmodels.RecipesViewModel;
 import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity implements RecipesAdapter.OnRecipeClickListener {
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements RecipesAdapter.On
         progressBar = findViewById(R.id.pb_main_progress_bar);
         RecyclerView recyclerView = findViewById(R.id.rv_recipes);
 
-        RecipesViewmodel recipesViewmodel = ViewModelProviders.of(this).get(RecipesViewmodel.class);
+        RecipesViewModel recipesViewmodel = ViewModelProviders.of(this).get(RecipesViewModel.class);
 
         recipesAdapter = new RecipesAdapter(this);
         recyclerView.setAdapter(recipesAdapter);

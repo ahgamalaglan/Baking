@@ -10,29 +10,30 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gemy.ahmed.baking.R;
 import com.gemy.ahmed.baking.adapters.StepsAdapter;
-import com.gemy.ahmed.baking.models.Ingredient;
 import com.gemy.ahmed.baking.models.Step;
+import com.gemy.ahmed.baking.viewmodels.RecipeViewModel;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
+import java.util.Objects;
 
 
 public class RecipeDetailsFragment extends Fragment implements StepsAdapter.OnListItemClickListener {
 
 
     private static final String TAG = "DetailsActivity";
-    private List<Ingredient> ingredients;
     private StepsAdapter recipeDetailsAdapter;
     private LinearLayoutManager linearLayoutManager;
     private OnStepClickListener onStepClickListener;
     private OnIngredientClickListener onIngredientClickListener;
-    private List<Step> steps;
+    private RecipeViewModel recipeViewModel;
+
     public RecipeDetailsFragment() {
     }
 
@@ -43,14 +44,11 @@ public class RecipeDetailsFragment extends Fragment implements StepsAdapter.OnLi
 
         linearLayoutManager = new LinearLayoutManager(getContext());
         recipeDetailsAdapter = new StepsAdapter(this);
+        recipeViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(RecipeViewModel.class);
+        recipeViewModel.getSelectedRecipe().observe(getActivity(), recipe -> {
+            recipeDetailsAdapter.setSteps(recipe.getSteps());
+        });
 
-        if (getArguments() != null) {
-            if (getArguments().getParcelableArrayList("steps") != null) {
-                  steps = getArguments().getParcelableArrayList("steps");
-                recipeDetailsAdapter.setSteps(steps);
-            }
-
-        }
     }
 
     @Override
@@ -75,9 +73,8 @@ public class RecipeDetailsFragment extends Fragment implements StepsAdapter.OnLi
 
     @Override
     public void onItemClick(Step step) {
-        onStepClickListener.onStepClick(step,steps.indexOf(step));
+        onStepClickListener.onStepClick(step.getId());
     }
-
 
     @Override
     public void onAttach(Context context) {
@@ -103,7 +100,7 @@ public class RecipeDetailsFragment extends Fragment implements StepsAdapter.OnLi
     }
 
     public interface OnStepClickListener {
-        void onStepClick(Step step,int stepId);
+        void onStepClick(int stepId);
     }
 
     public interface OnIngredientClickListener {

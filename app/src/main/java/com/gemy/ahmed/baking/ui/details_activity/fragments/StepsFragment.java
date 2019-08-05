@@ -72,6 +72,7 @@ public class StepsFragment extends Fragment {
             public void onPageScrollStateChanged(int state) {
 
             }
+
         });
     }
 

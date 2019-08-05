@@ -1,53 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="10dp"
-    android:layout_marginTop="5dp"
-    android:layout_marginRight="10dp"
-    android:layout_marginBottom="5dp"
-    app:cardBackgroundColor="@color/cardColor">
+    android:layout_margin="5dp"
+    android:background="@color/cardColor"
+    android:weightSum="6">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tv_ingredient_amount"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:weightSum="6">
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1"
+        android:text="33"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/tv_ingredient_amount"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:text="33"
-            android:textColor="@android:color/black"
-            android:textSize="22sp" />
+    <TextView
+        android:id="@+id/tv_ingredient_amount_type"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1"
+        android:text="cup"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/tv_ingredient_amount_type"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:text="cup"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="22sp" />
+    <TextView
+        android:id="@+id/tv_ingredient_type"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="4"
+        android:paddingLeft="5dp"
+        android:text="tea"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/tv_ingredient_type"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="4"
-            android:paddingLeft="5dp"
-            android:text="tea"
-            android:textColor="@android:color/black"
-            android:textSize="20sp" />
-
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+</LinearLayout>

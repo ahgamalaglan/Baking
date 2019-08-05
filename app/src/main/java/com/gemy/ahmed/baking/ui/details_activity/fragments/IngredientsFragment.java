@@ -22,9 +22,9 @@ import java.util.Objects;
 
 public class IngredientsFragment extends Fragment {
 
-
     private IngredientAdapter ingredientAdapter;
     private LinearLayoutManager linearLayoutManager;
+
     public IngredientsFragment() {
     }
 

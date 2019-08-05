@@ -1,27 +1,26 @@
 package com.gemy.ahmed.baking;
 
-import android.content.Context;
 
-import androidx.test.InstrumentationRegistry;
-import androidx.test.runner.AndroidJUnit4;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.rule.ActivityTestRule;
 
+import com.gemy.ahmed.baking.ui.main_activity.MainActivity;
+
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.*;
+import static androidx.test.espresso.Espresso.onData;
+import static androidx.test.espresso.matcher.ViewMatchers.*;
 
-/**
- * Instrumented test, which will execute on an Android device.
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
- */
+
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
-    @Test
-    public void useAppContext() {
-        // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getTargetContext();
+    @Rule
+    public ActivityTestRule<MainActivity> testRule = new ActivityTestRule<>(MainActivity.class);
 
-        assertEquals("com.gemy.ahmed.baking", appContext.getPackageName());
+    @Test
+    public void testRecipeItemClick() {
+    onData(withId(R.id.rv_recipes)).perform();
     }
 }

@@ -97,4 +97,5 @@ public class StepFragment extends Fragment {
         player.release();
         player = null;
     }
+
 }

@@ -8,12 +8,16 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.test.espresso.IdlingResource;
 
+import com.gemy.ahmed.baking.NetworkIdle;
 import com.gemy.ahmed.baking.R;
 import com.gemy.ahmed.baking.adapters.RecipesAdapter;
 import com.gemy.ahmed.baking.models.Recipe;
@@ -26,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements RecipesAdapter.On
     private static final String TAG = "MainActivity";
     private RecipesAdapter recipesAdapter;
     private ProgressBar progressBar;
+    private NetworkIdle networkIdle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements RecipesAdapter.On
         setContentView(R.layout.activity_main);
         progressBar = findViewById(R.id.pb_main_progress_bar);
         RecyclerView recyclerView = findViewById(R.id.rv_recipes);
-
         RecipesViewModel recipesViewmodel = ViewModelProviders.of(this).get(RecipesViewModel.class);
 
         recipesAdapter = new RecipesAdapter(this);
@@ -57,8 +61,14 @@ public class MainActivity extends AppCompatActivity implements RecipesAdapter.On
                     Log.d(TAG, "onCreate: recipes" + recipes.size());
                     progressBar.setVisibility(View.INVISIBLE);
                     recipesAdapter.setRecipes(recipes);
-                } else
+                    recyclerView.setVisibility(View.VISIBLE);
+                    if (networkIdle != null) {
+                        networkIdle.setIdleState(true);
+                    }
+                } else {
                     Toast.makeText(this, "no recipes returned ", Toast.LENGTH_LONG).show();
+                }
+
             });
 
 
@@ -81,5 +91,15 @@ public class MainActivity extends AppCompatActivity implements RecipesAdapter.On
         Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
         intent.putExtra("recipe", recipe);
         startActivity(intent);
+    }
+
+
+    @VisibleForTesting
+    @NonNull
+    public IdlingResource getIdlingResource() {
+        if (networkIdle == null) {
+            networkIdle = new NetworkIdle();
+        }
+        return networkIdle;
     }
 }
